@@ -25,8 +25,7 @@
 ## 4.数据输入  
 &nbsp;&nbsp;&nbsp;&nbsp;在main_warmup2_增强_ocr_频域特征v2_融合_epoch4_100_0.84122-final.ipynb的4.2前读取数据修改path的路径为训练数据，如只需要修改path;path = "/home/aistudio/queries_dataset_merge"
 ## 5.结果输出  
-&nbsp;&nbsp;&nbsp;&nbsp;分类结果输出的在训练代码定义开始训练的32行，为
-&nbsp;&nbsp;&nbsp;&nbsp;输出类别的概率
+&nbsp;&nbsp;&nbsp;&nbsp;分类结果输出的在训练代码定义开始训练的32行，为输出类别的概率
 &nbsp;&nbsp;&nbsp;&nbsp;probs = F.softmax(probs)
 ## 6.方法介绍  
 &nbsp;&nbsp;&nbsp;&nbsp;系统的设计是先采用PaddleOCR-2.6.0对训练集、测试集、验证集的img进行OCR识别，将识别的文件结果保存为同名的txt文件，用于在定义dataloader时进行加载。然后设计了将不同模态的特征采用Cross-Attention进行交互融合，最后将早期特征、交互特征和晚期特征进行融合，最终完成对基于多模态多特征融合的谣言稽查模型。训练的文本特征提取取采用的是ernie-m-base，图像特征提取器采用的是resnext101_64x4d。
